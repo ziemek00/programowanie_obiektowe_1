@@ -10,7 +10,7 @@
 1. Poprawa czytelności kodu:
     - Funckcja main zawiera moim zdaniem już tylko potrzebne komendy
     - Poprawa komentarzy:
-        - Usunięcie wiekszości komentarzy zawierających informacje o innych os
+        - Usunięcie komentarzy
         - Stworzenie read.me
 2. Ustawienie set oraz get points:
     - Zmiana prywatności poszczególnych zmiennych
