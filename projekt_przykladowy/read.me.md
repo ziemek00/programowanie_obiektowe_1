@@ -17,7 +17,7 @@
 3. Poprawa arabic_to_roman:
    - Przeniesienie z view do modelu
    - Poprawa wywoływania funkcji
-4. Dodanie obsługi błędów w view
+4. Dodanie obsługi błędów w view oraz ogólne poprawienie MVC
 5. Program zapisuje oraz wczytuje stan gry
 6. Program pyta się, czy użytkownik chce rozpocząć nową gre, czy wczytać stary zapis
 7. Zmieniono jeden długi, ciągły plik na poszczególny, odpowiadający za klasy
