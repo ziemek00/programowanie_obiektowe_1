@@ -1,4 +1,5 @@
 import msvcrt
+import os
 from model import Model
 from view import View
 
@@ -16,7 +17,7 @@ class Controller:
                     self.__read_save()
                     self.__press_button()
                 elif click == b'2':
-                    self.view.show_points_and_level()
+                    self.view.show_instructions()
                     self.__press_button()
                 else:
                     self.view.error_start()
@@ -35,10 +36,11 @@ class Controller:
                     self.view.error_button()
 
     def __is_there_save(self):
-        try:
-            self.file_path_save = 'save_gry.txt'
+        self.file_path_save = 'save_gry.txt'
+        if os.path.exists(self.file_path_save):
             self.__new_or_old_game()
-        except FileNotFoundError:
+        else:
+            self.view.show_instructions()
             self.__press_button()
 
     def __read_save(self):
