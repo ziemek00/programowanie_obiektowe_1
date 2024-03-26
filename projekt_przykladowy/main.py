@@ -4,8 +4,9 @@ from controller import Controller
 
 def main():
     model = Model()
-    view = View(model)
+    view = View()
     controller = Controller(view, model)
+    view.set_controller(controller)
     controller.start()
 
 if __name__ == "__main__":
