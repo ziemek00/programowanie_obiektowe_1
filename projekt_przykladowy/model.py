@@ -1,3 +1,4 @@
+# import os
 class Model:
     def __init__(self):
         self.__points = 0
@@ -16,7 +17,6 @@ class Model:
     def __add_level(self):
         self.__level = self.__points // 5 + 1
 
-
     def roman_level(self):
         return self.arabic_to_roman(self.__level)
 
@@ -32,3 +32,16 @@ class Model:
                 result += (symbol * count)
                 number = number % value
         return result
+
+    def read_save(self):
+        self.file_path_save = 'save_gry.txt'
+        with open(self.file_path_save, 'r') as file_object:
+            lines = file_object.readlines()
+            points_line = lines[0]
+            points = int(points_line.strip().split(': ')[1])
+            self.set_points(points)
+
+    def save_game(self):
+        file_path_save = 'save_gry.txt'
+        with open(file_path_save, 'w') as file_object:
+            file_object.write(f'Punkty: {self.get_points()} \nLevel:  {self.roman_level()}')

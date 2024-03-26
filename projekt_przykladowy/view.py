@@ -1,6 +1,6 @@
 class View:
-    def __init__(self, model):
-        self.model = model
+    def __init__(self):
+        self.controller = None
         self.is_first_display = True
 
     def error_button(self):
@@ -18,8 +18,11 @@ class View:
         if self.is_first_display:
             print("\n" * 30)
             self.is_first_display = False
-        print(f"\rPunkty: {self.model.get_points()}, level: {self.model.roman_level()}     ", end="", flush=True)
+        print(f"\rPunkty: {self.controller.pktt()}, level: {self.controller.lvl()}     ", end="", flush=True)
 
     def show_end(self):
-        print(f'\rZakończyłeś grę z wynikiem {self.model.get_points()} i {self.model.roman_level()} poziomem.')
+        print(f'\rZakończyłeś grę z wynikiem {self.controller.pktt()} i {self.controller.lvl()} poziomem.')
+
+    def set_controller(self, controller):
+        self.controller = controller
 
