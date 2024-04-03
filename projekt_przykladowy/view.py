@@ -1,6 +1,5 @@
 class View:
     def __init__(self):
-        self.controller = None
         self.is_first_display = True
 
     def error_button(self):
@@ -14,15 +13,12 @@ class View:
     def create_new_game(self):
         print("Posiadasz już zapis gry. Jeśli chcesz kontynuować grę wciśnij '1'. Jeśli chcesz rozpocząć nową grę wciśnij '2' ")
 
-    def show_points_and_level(self):
+    def show_points_and_level(self, points, level):
         if self.is_first_display:
             print("\n" * 30)
             self.is_first_display = False
-        print(f"\rPunkty: {self.controller.pktt()}, level: {self.controller.lvl()}     ", end="", flush=True)
+        print(f"\rPunkty: {points}, level: {level}     ", end="", flush=True)
 
-    def show_end(self):
-        print(f'\rZakończyłeś grę z wynikiem {self.controller.pktt()} i {self.controller.lvl()} poziomem.')
-
-    def set_controller(self, controller):
-        self.controller = controller
+    def show_end(self, points, level):
+        print(f'\rZakończyłeś grę z wynikiem {points} i {level} poziomem.')
 

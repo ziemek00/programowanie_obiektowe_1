@@ -32,7 +32,9 @@ class Controller:
                 click = msvcrt.getch()
                 if click == b'1':
                     self.model.read_save()
-                    self.view.show_points_and_level()
+                    points = self.pkt()
+                    level = self.lvl()
+                    self.view.show_points_and_level(points, level)
                     self.__press_button()
                 elif click == b'2':
                     self.view.show_instructions()
@@ -45,11 +47,15 @@ class Controller:
             if msvcrt.kbhit():
                 click = msvcrt.getch()
                 if click.lower() == b'e':
-                    self.view.show_end()
+                    points = self.pkt()
+                    level = self.lvl()
+                    self.view.show_end(points, level)
                     self.end()
                 elif click.lower() == b'b':
                     self.model.add_points()
-                    self.view.show_points_and_level()
+                    points = self.pkt()
+                    level = self.lvl()
+                    self.view.show_points_and_level(points, level)
                 else:
                     self.view.error_button()
 
