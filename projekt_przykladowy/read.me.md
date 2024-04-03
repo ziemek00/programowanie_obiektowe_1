@@ -28,3 +28,17 @@
 	-View "bierze" teraz dane z klasy Controller
 	-Zmiana w main ustawianie kontrolera dla main oraz dodanie funckji w klasie View (set_controller), aby ustawić controller
 3. Poprawa wyglądu kodu dla klasy controller: funckje są napisane w kolejności uruchamiania, w celu przejrzystości kodu
+
+# Zmiany po kontakcie z Panem drogą mailową (03.04.2024):
+1. Modyfikacja metody show_points_and_level
+2. Usunięcie z View Controllera
+3. Usunięcie z Controllera View
+4. Usunięcie z View Controllera
+
+licznik = 5
+while True:
+	if licznik % 2 == 1:
+ 		print(f"{licznik}. Usunięcie z Controllera View")
+   	else:
+    		print(f"{licznik}. Usunięcie z View Controllera")
+      licznik += 1
