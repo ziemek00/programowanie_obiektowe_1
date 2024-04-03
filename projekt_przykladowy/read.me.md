@@ -22,3 +22,9 @@
 6. Program pyta się, czy użytkownik chce rozpocząć nową gre, czy wczytać stary zapis
 7. Zmieniono jeden długi, ciągły plik na poszczególny, odpowiadający za klasy
 
+# Zmiany po kontakcie z Panem drogą mailową (26.03.2024):
+1. Zmiana klas, do których należą read_save oraz save_game
+2. View->Model:
+	-View "bierze" teraz dane z klasy Controller
+	-Zmiana w main ustawianie kontrolera dla main oraz dodanie funckji w klasie View (set_controller), aby ustawić controller
+3. Poprawa wyglądu kodu dla klasy controller: funckje są napisane w kolejności uruchamiania, w celu przejrzystości kodu
