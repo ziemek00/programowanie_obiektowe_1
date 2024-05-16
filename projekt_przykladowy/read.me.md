@@ -28,3 +28,8 @@
 	-View "bierze" teraz dane z klasy Controller
 	-Zmiana w main ustawianie kontrolera dla main oraz dodanie funckji w klasie View (set_controller), aby ustawić controller
 3. Poprawa wyglądu kodu dla klasy controller: funckje są napisane w kolejności uruchamiania, w celu przejrzystości kodu
+
+# Zmiany po kontakcie z Panem drogą mailową (03.04.2024):
+1. Modyfikacja metody show_points_and_level i show_end
+2. Usunięcie z View Controllera
+3. Modyfikacja metody __new_or_old_game() oraz __press_button()
