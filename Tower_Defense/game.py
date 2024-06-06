@@ -9,6 +9,7 @@ from score import Score
 
 # czekałem raz 27 sekund na pierwszego moba przez rng
 class Game:
+    """Klasa odpowiedzialna za główną logikę gry."""
     def __init__(self, screen, map_image):
         self.screen = screen
         self.clock=pygame.time.Clock()
@@ -25,6 +26,7 @@ class Game:
         self.score = Score(initial_score=1500)
 
     def run(self):
+        """Uruchamia główną pętlę gry."""
         while self.running:
             self.handle_events()
             if not self.start_screen.active:
@@ -36,10 +38,12 @@ class Game:
             self.clock.tick(60)
 
     def spawn_enemy(self):
+        """Losuje, którego wroga zrodzi gra."""
         enemy_type = random.choice(['normal', 'fast', 'strong'])
         self.enemies.append(Enemy(self.map.waypoints, enemy_type))
 
     def handle_events(self):
+        """Obsługuje zdarzenia gry."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 self.running = False
@@ -59,12 +63,14 @@ class Game:
                 if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN:
                     self.running = False
     def is_click_on_icon(self, x, y):
+        """Sprawdza, czy kliknięto na ikonę wieży lub sprzedaży."""
         return (Tower.normal_icon_rect.collidepoint(x, y) or
                 Tower.fast_icon_rect.collidepoint(x, y) or
                 Tower.strong_icon_rect.collidepoint(x, y) or
                 Tower.sell_icon_rect.collidepoint(x, y))
 
     def place_tower(self, x, y):
+        """Umieszcza wieżę na mapie, jeśli to możliwe."""
         if not Tower.active:
             return
 
@@ -82,6 +88,7 @@ class Game:
                 return
 
     def sell_tower(self, x, y):
+        """Sprzedaje wieżę i dodaje punkty do wyniku."""
         for tower in self.towers:
             if abs(tower.position[0] - x) < 20 and abs(tower.position[1] - y) < 20:
                 if isinstance(tower, FastTower):
@@ -96,6 +103,7 @@ class Game:
                 return
 
     def generate_enemies(self):
+        """Generuje wrogów w losowych odstępach czasowych."""
         self.spawn_timer += self.clock.get_time()
         if self.spawn_timer >= 1000:
             self.spawn_timer = 0
@@ -116,6 +124,7 @@ class Game:
                 if random.randint(1, 5) > 0:
                     self.spawn_enemy()
     def update(self):
+        """Aktualizuje stan gry."""
         self.game_timer += self.clock.get_time() / 1000
         if self.lives.lives > 0:
             self.generate_enemies()
@@ -140,6 +149,7 @@ class Game:
                     self.projectiles.remove(projectile)
 
     def render(self):
+        """Renderuje wszystkie elementy gry na ekranie."""
         self.screen.fill((0, 0, 0))
         if self.lives.lives > 0:
             self.map.draw(self.screen)
@@ -157,6 +167,7 @@ class Game:
         pygame.display.flip()
 
     def render_game_over(self):
+        """Wyświetla ekran końca gry."""
         self.screen.fill((0, 0, 0))
         self.game_over_screen.draw()
         pygame.display.flip()

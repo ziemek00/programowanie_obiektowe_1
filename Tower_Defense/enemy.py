@@ -2,6 +2,7 @@ import pygame
 
 class Enemy:
     def __init__(self, waypoints, enemy_type='normal'):
+        """Inicjalizuje obiekt wroga z wyznaczonymi punktami trasy i typem wroga."""
         self.waypoints = waypoints
         self.current_wp = 0
         self.position = [float(waypoints[0][0]), float(waypoints[0][1])]
@@ -13,6 +14,7 @@ class Enemy:
         self.image_rect = self.image.get_rect(center=(int(self.position[0]), int(self.position[1])))
 
     def set_attributes(self, enemy_type):
+        """Ustawia atrybuty wroga w zależności od jego typu."""
         if enemy_type == 'normal':
             self.health = 100
             self.max_health = 100
@@ -30,9 +32,11 @@ class Enemy:
             self.image_path = 'images/strong_enemy.png'
 
     def get_type(self):
+        """Zwraca typ wroga."""
         return self.enemy_type
 
     def update(self):
+        """Wyznacza trasę wroga."""
         if self.current_wp < len(self.waypoints) - 1:
             target = self.waypoints[self.current_wp + 1]
 
@@ -58,10 +62,12 @@ class Enemy:
             self.image_rect.center = (int(self.position[0]), int(self.position[1]))
 
     def draw(self, screen):
+        """Rysuje wroga na ekranie."""
         screen.blit(self.image, self.image_rect.topleft)
         self.draw_health_bar(screen)
 
     def draw_health_bar(self, screen):
+        """Rysuje pasek zdrowia wroga nad jego pozycją."""
         bar_width = 40
         bar_height = 5
         bar_x = self.position[0] - bar_width // 2
@@ -73,6 +79,7 @@ class Enemy:
         pygame.draw.rect(screen, (0, 255, 0), (bar_x, bar_y, current_bar_width, bar_height))
 
     def take_damage(self, damage):
+        """Odpowiada za odejmowanie zdrowia po otrzymaniu obrażeń."""
         self.health -= damage
         if self.health <= 0:
             self.alive = False

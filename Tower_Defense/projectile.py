@@ -2,7 +2,9 @@ import pygame
 import math
 
 class Projectile:
+    """Klasa reprezentująca pocisk."""
     def __init__(self, position, target, damage=10, speed=5):
+        """Inicjalizuje obiekt pocisku."""
         self.position = list(position)
         self.target = target
         self.damage = damage
@@ -12,6 +14,7 @@ class Projectile:
         self.image = pygame.transform.scale(self.image, (10, 10))
 
     def update(self):
+        """Aktualizuje pozycję pocisku i sprawdza, czy trafił w cel."""
         if not self.alive:
             return
 
@@ -27,4 +30,5 @@ class Projectile:
             self.target.take_damage(self.damage)
 
     def draw(self, screen):
+        """Rysuje pocisk na ekranie."""
         screen.blit(self.image, (int(self.position[0]), int(self.position[1])))
