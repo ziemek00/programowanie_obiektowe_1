@@ -7,7 +7,6 @@ from screens import  GameOverScreen, StartScreen
 from lives import Lives
 from score import Score
 
-# czekałem raz 27 sekund na pierwszego moba przez rng
 class Game:
     """Klasa odpowiedzialna za główną logikę gry."""
     def __init__(self, screen, map_image):
@@ -52,6 +51,7 @@ class Game:
             elif self.lives.lives > 0:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     x, y = event.pos
+                    # Sprawdzenie, czy kliknięto na ikonę wieży
                     if self.is_click_on_icon(x, y):
                         Tower.handle_click(x, y)
                     else:
@@ -107,7 +107,7 @@ class Game:
         self.spawn_timer += self.clock.get_time()
         if self.spawn_timer >= 1000:
             self.spawn_timer = 0
-
+            # Losowe generowanie wrogów z różnym prawdopodobieństwem w zależności od czasu gry
             if self.game_timer < 20:
                 if random.randint(1, 5) > 4:
                     self.spawn_enemy()

@@ -62,6 +62,7 @@ class Tower:
         if self.current_cooldown > 0:
             self.current_cooldown -= 1
 
+        # Znalezienie najbliższego wroga
         closest_enemy = None
         closest_distance = float('inf')
         for enemy in enemies:
@@ -69,10 +70,10 @@ class Tower:
             if distance < closest_distance:
                 closest_distance = distance
                 closest_enemy = enemy
-
+        # Strzelanie do wroga, jeśli cooldown wynosi 0 i wróg jest w zasięgu
         if self.current_cooldown <= 0 and closest_enemy and closest_distance < self.range:
             self.shoot(closest_enemy, projectiles)
-            self.current_cooldown = self.cooldown  # Reset cooldown
+            self.current_cooldown = self.cooldown
 
 
     def shoot(self, target, projectiles):

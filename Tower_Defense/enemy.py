@@ -43,21 +43,23 @@ class Enemy:
             delta_x = target[0] - self.position[0]
             delta_y = target[1] - self.position[1]
 
+            # Ruch w poziomie
             if abs(delta_x) > 0:
                 step = self.speed if delta_x > 0 else -self.speed
                 self.position[0] += step
                 if abs(target[0] - self.position[0]) < self.speed:
                     self.position[0] = float(target[0])
+            # Ruch w pionie
             elif abs(delta_y) > 0:
                 step = self.speed if delta_y > 0 else -self.speed
                 self.position[1] += step
                 if abs(target[1] - self.position[1]) < self.speed:
                     self.position[1] = float(target[1])
-
+            # Sprawdzenie, czy wróg dotarł do punktu trasy
             if self.position == [float(target[0]), float(target[1])]:
                 self.current_wp += 1
                 if self.current_wp == len(self.waypoints) - 1:
-                    self.alive = False
+                    self.alive = False # Wróg dotarł do końca trasy i umiera
 
             self.image_rect.center = (int(self.position[0]), int(self.position[1]))
 
